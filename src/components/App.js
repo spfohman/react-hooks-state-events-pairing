@@ -7,7 +7,7 @@ import CommentButton from './CommentButton'
 import React, {useState} from 'react';
 
 function App() {
-  console.log("Here's your data:", video);
+  
   const[dislikes, setDislikes]=useState(video.downvotes);
   const [likes, setLikes]=useState(video.upvotes);
   const[showComments, setShowComments]=useState(true);
@@ -19,7 +19,6 @@ function App() {
     setDislikes(dislikes-1)
   }
   function toggleComments(){
-    console.log('clicked')
     setShowComments(!showComments)
   }
 
@@ -36,7 +35,9 @@ function App() {
       <VideoData title={video.title} date={video.createdAt} views={video.views}/>
       <span><LikeButton likes={likes} onClick={upVote}/><DislikeButton dislikes={dislikes} onClick={downVote}/></span>
       <CommentButton onToggle={toggleComments}/>
-      <Comments comments={video.comments}/>
+      
+      <p></p>
+      {showComments ? <Comments comments={video.comments}/> : null}
     </div>
   );
 }
